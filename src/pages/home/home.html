@@ -1,0 +1,61 @@
+<ion-content padding>
+  <ion-card [ngStyle]="{ 'background-image' : gradient}">
+    <ion-card-content >
+
+    </ion-card-content>
+    <ion-card-header>
+      <ion-icon *ngIf="!this.platform.is('ios')" name="refresh" class="refresh" id="ricon" (click)='ionViewDidEnter()'></ion-icon>
+      <ion-icon *ngIf="this.platform.is('ios')" name="refresh" class="refreshIOS" id="ricon" (click)='ionViewDidEnter()'></ion-icon>
+
+      <div *ngIf="this.platform.is('ios')" class="tempLIOS">
+        Current/High
+      </div>
+      <div *ngIf="this.platform.is('ios')" class="tempIOS">
+        {{weatherLocal}}/{{temperature}}
+      </div>
+      <div *ngIf="!this.platform.is('ios')" class="tempL">
+        Current/High
+      </div>
+      <div *ngIf="!this.platform.is('ios')" class="temp">
+        {{weatherLocal}}/{{temperature}}
+      </div>
+      <div *ngIf="this.platform.is('ios')" class="outsideIOS">
+        Time outside: {{totalTime}} minutes
+      </div>
+      <div *ngIf="this.platform.is('ios')" class="wearStrIOS" text-wrap>
+        {{level}}
+      </div>
+      <div *ngIf="!this.platform.is('ios')" class="outside">
+        Time outside: {{totalTime}} minutes
+      </div>
+      <div *ngIf="!this.platform.is('ios')" class="wearStr" text-wrap>
+        {{level}}
+      </div>
+
+      <div [ngStyle]="{ 'background-image' : graphic}" class="gif"></div>
+      <div [ngStyle]="{ 'background-image' : global.outfit}" style="height: 300px;width: auto;padding-left: 15px;background-repeat: no-repeat;background-size:contain;" ></div>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-card-header (click)='markLocation()'>
+      <ion-card-title>Set New Location</ion-card-title>
+      <ion-icon class="graphic" name="locate"></ion-icon>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="dropdown">
+      <p>Traveling? Input a new city or zip to change the prediction above</p>
+      <ion-input placeholder="City or ZipCode" [(ngModel)]="newLoc"></ion-input>
+      <button ion-button light (click)='setNewLocation()' >Change Location</button>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header (click)='giveFeedback()'>
+      <ion-card-title>Give User Feedback</ion-card-title>
+      <ion-icon class="graphic2" name="help"></ion-icon>
+    </ion-card-header>
+  </ion-card>
+
+
+</ion-content>
